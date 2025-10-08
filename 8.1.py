@@ -30,7 +30,7 @@ class Star:
 
     # method
     def as_row(self):
-        # Сохраняем как текст: x y magnitude [label]
+        # сохраняем как текст: x y magnitude [label]
         return f"{self.x} {self.y} {self.magnitude}" + (f" {self.label}" if self.label else "")
 
 
@@ -226,7 +226,7 @@ class StarApp(tk.Tk):
         self._info(f"Найдено кластеров: {k}")
         self.update_legend()
         self.redraw()
-        self.show_cluster_pie_chart()  # <-- ВЫЗОВ КРУГОВОЙ ДИАГРАММЫ
+        self.show_cluster_pie_chart()  # диаграмма
 
     # method
     def on_color_clusters(self):
@@ -290,7 +290,7 @@ class StarApp(tk.Tk):
     def _info(self, msg: str):
         self.title(f"Л.р. №8 — Вариант 33: {msg}")
 
-    # method — НОВЫЙ: отображение круговой диаграммы
+    # method 
     def show_cluster_pie_chart(self):
         """Отображает круговую диаграмму распределения звёзд по кластерам."""
         if not self.field.stars or not self.field.cluster_ids:
@@ -302,7 +302,6 @@ class StarApp(tk.Tk):
         labels = [f"Кластер #{cid}" for cid in sorted_clusters]
         sizes = [counts[cid] for cid in sorted_clusters]
 
-        # Цвета из той же палитры, что и на холсте
         colors = [self.field.palette[i % len(self.field.palette)] for i in range(len(labels))]
 
         plt.figure(figsize=(6, 6))
@@ -315,7 +314,7 @@ class StarApp(tk.Tk):
             textprops={'fontsize': 10}
         )
         plt.title("Распределение звёзд по кластерам", fontsize=14, pad=20)
-        plt.axis('equal')  # Круглая форма
+        plt.axis('equal') 
         plt.tight_layout()
         plt.show()
 
@@ -323,3 +322,4 @@ class StarApp(tk.Tk):
 if __name__ == "__main__":
     app = StarApp()
     app.mainloop()
+
